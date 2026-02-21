@@ -5,7 +5,7 @@ dotenv.config();
 const isCI = process.env.CI === 'true';
 
 function getEnv(name: string, required = false): string {
-  const value = process.env[name];
+  let value = process.env[name];
 
   if (!value || value.trim() === '') {
     if (required && isCI) {
@@ -13,6 +13,9 @@ function getEnv(name: string, required = false): string {
     }
     return '';
   }
+
+  // 🔥 BOM 제거 + 앞뒤 공백 제거
+  value = value.replace(/^\uFEFF/, '').trim();
 
   return value;
 }
