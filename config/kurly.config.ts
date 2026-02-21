@@ -7,9 +7,11 @@ const isCI = process.env.CI === 'true';
 function getEnv(name: string, required = false): string {
   const value = process.env[name];
 
-  // 🔎 디버깅 로그 추가
-  console.log(`[DEBUG] ${name} raw:`, JSON.stringify(value));
-  console.log(`[DEBUG] ${name} length:`, value ? value.length : 'undefined');
+  // 🔎 그냥 그대로 출력
+  console.log("ENV NAME :", name);
+  console.log("ENV VALUE :", value);
+  console.log("ENV LENGTH :", value ? value.length : 'undefined');
+  console.log("====================================");
 
   if (!value || value.trim() === '') {
     if (required && isCI) {
